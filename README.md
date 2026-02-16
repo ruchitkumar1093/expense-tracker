@@ -46,14 +46,16 @@ Spring Boot manages object creation using IoC (Inversion of Control).
 
 ## Sample Request (POST)
 
+```http
 POST /expenses
 Content-Type: application/json
 
 {
-"title": "Dinner",
-"amount": 350,
-"category": "Food"
+  "title": "Dinner",
+  "amount": 350,
+  "category": "Food"
 }
+```
 
 ---
 
