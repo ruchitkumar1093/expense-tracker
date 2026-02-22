@@ -1,17 +1,33 @@
 package com.ruchit.expensetracker.model;
 
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
+
+@Entity
+@Table(name = "expenses")
 public class Expense {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank(message = "Title cannot be empty")
+    @Column(nullable = false)
     private String title;
-    private double amount;
+
+    @Positive(message = "Amount must be greater than 0")
+    @Column(nullable = false)
+    private Double amount;
+
+    @NotBlank(message = "Category cannot be empty")
+    @Column(nullable = false)
     private String category;
 
     public Expense() {
     }
 
-    public Expense(Long id, String title, double amount, String category) {
-        this.id = id;
+    public Expense(String title, Double amount, String category) {
         this.title = title;
         this.amount = amount;
         this.category = category;
@@ -25,7 +41,7 @@ public class Expense {
         return title;
     }
 
-    public double getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
@@ -33,15 +49,11 @@ public class Expense {
         return category;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public void setTitle(String title) {
         this.title = title;
     }
 
-    public void setAmount(double amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
     }
 
